@@ -69,7 +69,7 @@ const StyledSelect = styled.select`
 `
 
 
-function FormHead({title , subtitle}) {
+function FormHead({title , subtitle  , showFilters}) {
   return (
       <Container>
         <FormHeaderLeft>
@@ -107,12 +107,17 @@ function FormHead({title , subtitle}) {
             <p>{subtitle}</p>
           </RightTextContainer>
         </FormHeaderLeft>
-        <FormHeaderRight>
-          <StyledInput type="text" placeholder="Search" />
-          <StyledSelect>
-            <option>Sort By</option>
-          </StyledSelect>
-        </FormHeaderRight>
+        {
+
+        showFilters && <FormHeaderRight>
+        <StyledInput type="text" placeholder="Search" />
+        <StyledSelect>
+          <option>Sort By</option>
+        </StyledSelect>
+      </FormHeaderRight>
+
+}
+
       </Container>
 
   )

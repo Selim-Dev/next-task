@@ -53,8 +53,8 @@ const CustodianMain = () => {
             <StyledGrid cols="2" gap="20px">
                 <StyledInput width='100%' placeholder="Name*" />
                 <StyledInput width='100%' placeholder="Name*" />
-                <StyledInput placeholder="Name*" />
-                <StyledInput placeholder="Name*" />
+                <StyledInput width='100%' placeholder="Name*" />
+                <StyledInput width='100%' placeholder="Name*" />
             </StyledGrid>
         </StyledForm>
 

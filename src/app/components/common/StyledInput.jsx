@@ -16,9 +16,9 @@ const Input = styled.input`
 `
 
 
-const StyledInput = ({placeholder}) => {
+const StyledInput = ({placeholder , ...props}) => {
   return (
-    <Input type="text" placeholder={placeholder}  />
+    <Input type="text" placeholder={placeholder}  {...props} />
   )
 }
 

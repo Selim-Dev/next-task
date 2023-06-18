@@ -7,6 +7,7 @@ import StyledContainer from './../common/StyledContainer'
 const StyledList = styled.ul`
   list-style: none;
   width: 230px;
+  min-width: 230px;
 `
 const StyledListItem = styled.li`
   padding: 13px 20px;

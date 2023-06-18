@@ -9,6 +9,7 @@ const Button = styled.button`
     cursor: pointer;
     background-color: ${(props) => (props.bg || "initial")};
     color: ${(props) => (props.color || "black")};
+    margin-top: ${(props) => (props.mt || null)};
     border:1px solid #004A91;
 `
 
