@@ -9,6 +9,7 @@ const Container = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  box-shadow:${(props) => props.shadow || null}
 `
 
 const FormHeaderLeft = styled.div`
@@ -71,7 +72,7 @@ const StyledSelect = styled.select`
 
 function FormHead({title , subtitle  , showFilters}) {
   return (
-      <Container>
+      <Container shadow= "0 4 103 0 #323247">
         <FormHeaderLeft>
           <RightIconContainer>
             <svg
