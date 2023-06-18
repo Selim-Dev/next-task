@@ -43,8 +43,11 @@ export const NavbarExtendedContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	transition: all 1s ease-in-out;
+	transition: all 0.5s ease-in-out;
 	width: 70%;
+	border-right: 2px solid var(--secondary-color);
+	border-bottom: 1px solid var(--secondary-color);
+	border-top: 1px solid var(--secondary-color);
 
 	@media screen and (min-width: 768px){
 		display: none;

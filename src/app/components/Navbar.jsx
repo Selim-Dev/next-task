@@ -38,8 +38,13 @@ const Navbar = () => {
 			</NavbarInnerContainer>
 			{extendNavbar && 
 			<NavbarExtendedContainer>
-				<h1>hello</h1>
-				<h1>hello</h1>
+			<NavbarButton>Individual Investor</NavbarButton>
+							<BiMoon style={{fontSize:"32px",transform	:'rotate(270deg)',color:'#64646C'}} />
+							<BiBell style={{fontSize:"32px",color:'#64646C'}} />
+							<LanguageButton>
+								<LanguageElement>EN</LanguageElement>
+								<LanguageElement active>ع</LanguageElement>
+							</LanguageButton>
 			</NavbarExtendedContainer>}
 		</NavbarContainer>
 	)
