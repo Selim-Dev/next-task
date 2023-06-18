@@ -8,5 +8,5 @@ export async function GET(request) {
     results: data.length,
     data,
   };
-  return new Response(JSON.stringify(json_response,null,2))
+  return new Response(json_response)
 }
