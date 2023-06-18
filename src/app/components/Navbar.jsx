@@ -4,8 +4,10 @@ import { useState } from "react";
 import { DropDown, HidingContainer, LanguageButton, LanguageElement, LeftContainer, NavbarButton, NavbarContainer, NavbarExtendedContainer, NavbarInnerContainer, OpenMenuButton, RightContainer, Typography, UserBadge, WelcomeContainer } from "../styles/Navbar.style"
 import {BiBell, BiMoon} from 'react-icons/bi'
 import {BsChevronDown} from 'react-icons/bs'
+import { useRouter } from "next/navigation";
 
 const Navbar = () => {
+	const router = useRouter()
 	const [extendNavbar,setExtedNavbar] = useState(false);
 	return (
 		<NavbarContainer extendNavbar={extendNavbar}>
@@ -17,7 +19,9 @@ const Navbar = () => {
 				</LeftContainer>
 				<RightContainer >
 					<HidingContainer>
-							<NavbarButton>Individual Investor</NavbarButton>
+							<NavbarButton onClick={()=>{
+								router.push("/CustodianForm")
+							}}>Individual Investor</NavbarButton>
 							<BiMoon style={{fontSize:"32px",transform	:'rotate(270deg)',color:'#64646C'}} />
 							<BiBell style={{fontSize:"32px",color:'#64646C'}} />
 							<LanguageButton>
