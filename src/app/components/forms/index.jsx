@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import StyledContainer from '../common/StyledContainer'
 import FormHead from '../common/FormHead'
-import FormBody from '../common/FormBody'
+import FormBody from './FormBody'
 import ClientOnly from '../ClientOnly'
 import axios from 'axios'
 

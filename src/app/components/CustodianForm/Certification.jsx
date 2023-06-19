@@ -4,6 +4,7 @@ import StyledInput from './../common/StyledInput'
 import StyledGrid from './../common/StyledGrid'
 import StyledContainer from './../common/StyledContainer'
 import StyledSecondaryButton from './../common/StyledSecondaryButton'
+import { useRouter } from 'next/navigation'
 
 const Container = styled.div`
   width: 90vw;
@@ -60,6 +61,7 @@ const StyledCheckBox = styled.input`
 `
 
 const Certification = () => {
+  const router = useRouter()
   return (
     <StyledContainer
       direction="column"
@@ -119,18 +121,10 @@ const Certification = () => {
           E-Sign Document
         </StyledSecondaryButton>
 
-      {/* <StyledForm>
-        <StyledGrid cols="2" gap="20px">
-          <StyledInput width="100%" placeholder="Name*" />
-          <StyledInput width="100%" placeholder="Name*" />
-          <StyledInput width="100%" placeholder="Name*" />
-          <StyledInput width="100%" placeholder="Name*" />
-        </StyledGrid>
-      </StyledForm> */}
 
       <StyledContainer gap="20px" mt="60px" ml="auto">
-        <StyledSecondaryButton color="#004A91">Cancel</StyledSecondaryButton>
-        <StyledSecondaryButton bg="#004A91" color="#fff">
+        <StyledSecondaryButton color="#004A91" onClick={()=>router.push("/")}>Cancel</StyledSecondaryButton>
+        <StyledSecondaryButton bg="#004A91" color="#fff" onClick={()=>router.push("/")}>
           Save
         </StyledSecondaryButton>
       </StyledContainer>

@@ -8,6 +8,7 @@ const Input = styled.input`
   border: 2px solid #b7b7ba;
   outline: none;
   position: relative;
+  margin-top: ${(props) => props.mt || null };
   &::placeholder {
     color: #004a91;
     font-size: 14px;

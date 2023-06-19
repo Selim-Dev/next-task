@@ -1,6 +1,6 @@
 :root {
-  --primary-color:#003691;
-  --secondary-color:#64646C;
+  --primary-color: #003691;
+  --secondary-color: #64646c;
   --max-width: 1100px;
   --border-radius: 12px;
   --font-mono: ui-monospace, Menlo, Monaco, 'Cascadia Mono', 'Segoe UI Mono',
@@ -95,24 +95,25 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb)); */
-    /* From https://css.glass */
-/* From https://css.glass */
-/* background: rgba(255, 255, 255, 0.63);
+  /* From https://css.glass */
+  /* From https://css.glass */
+  /* background: rgba(255, 255, 255, 0.63);
 background-image: linear-gradient(to bottom right, rgb(246, 244, 244), #d1d1d1);
 
 background-repeat: no-repeat; */
-min-height: 100vh;
+  min-height: 100vh;
 
-
-background-image: url("../assets/images/svg/bg-top.svg") , url("../assets/images/svg/bg-left.svg") , url("../assets/images/svg/bg-right.svg");
-background-repeat: no-repeat , no-repeat , no-repeat;
-background-size: 1000px 1000px , 921px 921px , 921px 921px;
-background-position: 50% -251px , -50% 251px , 150% 251px ;
-/* backdrop-filter: ; */
-backdrop-filter: blur(90.9792px);
-/* Note: backdrop-filter has minimal browser support */
-/* transform: rotate(90deg); */
-
+  padding-bottom: 100px;
+  background-image: url('../assets/images/svg/bg-top.svg'),
+    url('../assets/images/svg/bg-left.svg'),
+    url('../assets/images/svg/bg-right.svg');
+  background-repeat: no-repeat, no-repeat, no-repeat;
+  background-size: 1000px 1000px, 921px 921px, 921px 921px;
+  background-position: 50% -251px, -50% 251px, 150% 251px;
+  /* backdrop-filter: ; */
+  backdrop-filter: blur(90.9792px);
+  /* Note: backdrop-filter has minimal browser support */
+  /* transform: rotate(90deg); */
 }
 
 a {
@@ -125,9 +126,3 @@ a {
     color-scheme: light;
   }
 } */
-
-
-
-
-
-

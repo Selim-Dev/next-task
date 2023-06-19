@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react'
 import { styled } from 'styled-components'
-import StyledButton from './StyledButton'
+import StyledButton from './../common/StyledButton'
 import EditIcon from '../icons/edit-icon'
 import ViewIcon from '../icons/view-icon'
 import DownloadIcon from '../icons/download-icon'
+import { useRouter } from 'next/navigation'
 
 const FormWrapper = styled.div`
   display: flex;
@@ -29,6 +30,7 @@ const ButtonsContainer = styled.div`
 const StyledTable = styled.table`
   font-size: 14px;
   font-weight: 500;
+  border-collapse: collapse;
 `
 
 const StyledTabledHead = styled.thead`
@@ -39,7 +41,8 @@ const StyledTabledBody = styled.tbody`
   color: #004a91;
 `
 
-const StyledTabledRow = styled.tr``
+const StyledTabledRow = styled.tr`
+`
 const StyledTableCell = styled.td`
   padding: 16px 30px;
   float: ${(props) => props.float || 'initial'};
@@ -76,6 +79,8 @@ const normalBtnStyle = { bg: '#fff', color: '#004A91' }
 function FormBody({ forms }) {
   const [status, setStatus] = React.useState('approved')
   const [filteredData, setFilteredData] = React.useState([])
+
+  const router = useRouter()
 
   const handleStatusChange = (val) => {
     setStatus(val)
@@ -123,14 +128,16 @@ function FormBody({ forms }) {
             <StyledTabledBody>
               {filteredData?.map(
                 ({ id, name, title, createdAt, custodianDetails }) => (
-                  <StyledTabledRow key={id}>
+                  <StyledTabledRow key={id} style={{
+                    borderBottom:"1px solid #F4F4F5"
+                  }}>
                     <StyledTableCell>{id}</StyledTableCell>
                     <StyledTableCell>{title}</StyledTableCell>
                     <StyledTableCell>{createdAt}</StyledTableCell>
                     <StyledTableCell float="right">
                       <ActionBtnsContainer>
                         <ActionBtn bg="#004A91">
-                          <EditIcon />
+                          <EditIcon onClick={()=>router.push("/CustodianForm")} />
                         </ActionBtn>
 
                         <ActionBtn bg="#fff">
@@ -162,7 +169,9 @@ function FormBody({ forms }) {
             </StyledTabledHead>
             <StyledTabledBody>
               {filteredData.map(({ id, title, createdAt, status }) => (
-                <StyledTabledRow key={id}>
+                <StyledTabledRow key={id} style={{
+                  borderBottom:"1px solid #F4F4F5"
+                }}>
                   <StyledTableCell>{id}</StyledTableCell>
                   <StyledTableCell>{title}</StyledTableCell>
                   <StyledTableCell>{createdAt}</StyledTableCell>
@@ -174,7 +183,7 @@ function FormBody({ forms }) {
                   <StyledTableCell float="right">
                     <ActionBtnsContainer>
                       <ActionBtn bg="#004A91">
-                        <EditIcon />
+                        <EditIcon onClick={()=>router.push("/CustodianForm")} />
                       </ActionBtn>
 
                       <ActionBtn bg="#fff">
