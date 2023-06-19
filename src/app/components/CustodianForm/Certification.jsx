@@ -72,8 +72,8 @@ const Certification = () => {
       <CertificationParagraph bg="#D9D9D9" p="20px">
         I hereby certify the information that I have provided in this
         subscription form is valid, correct, and complete, and an integral part
-        of this subscription form, and XYZ Capital in its capacity as the "Fund
-        Manager" has the full right to rely on such data and information.
+        of this subscription form, and XYZ Capital in its capacity as the Fund
+        Manager has the full right to rely on such data and information.
         <br />
         <br />
         The applicant confirms that they have read and understood the Terms and
@@ -93,7 +93,7 @@ const Certification = () => {
         stipulated in the Terms and Conditions. Accordingly, by accepting the
         Fund Manager to the signed subscription form, they will become legally
         bound by all the terms, conditions, and documents related to it and to
-        the offering of the Fund's units, and this subscription form is subject
+        the offering of the Funds units, and this subscription form is subject
         to all the provisions stipulated in the Terms and Conditions of the
         Fund.
         <br />

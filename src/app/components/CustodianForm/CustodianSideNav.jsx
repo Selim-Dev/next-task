@@ -17,10 +17,15 @@ const StyledListItem = styled.li`
   cursor: pointer;
 `
 
-function CustodianSideNav() {
+function CustodianSideNav({activeSec,setActiveSec}) {
+  const handleNavClick = (active) => {
+    setActiveSec(active)
+  }
   return (
           <StyledList>
-            <StyledListItem>
+            <StyledListItem
+            color={activeSec=="custodian-details"?"#fff":"004A91"} bg={activeSec=="custodian-details"?"#004A91":"fff"}
+            onClick={()=>handleNavClick("custodian-details")}>
               <StyledContainer gap="12px">
                 <svg
                   width="11"
@@ -40,7 +45,7 @@ function CustodianSideNav() {
                 <span>Custodian Details</span>
               </StyledContainer>
             </StyledListItem>
-            <StyledListItem color="#fff" bg="#004A91">
+            <StyledListItem color={activeSec=="other-information"?"#fff":"004A91"} bg={activeSec=="other-information"?"#004A91":"fff"}  onClick={()=>handleNavClick("other-information")}>
               <StyledContainer gap="12px">
                 <svg
                   width="14"
@@ -57,7 +62,9 @@ function CustodianSideNav() {
                 <span>Other Information</span>
               </StyledContainer>
             </StyledListItem>
-            <StyledListItem>
+            <StyledListItem
+            color={activeSec=="certificate"?"#fff":"004A91"} bg={activeSec=="certificate"?"#004A91":"fff"}
+            onClick={()=>handleNavClick("certificate")}>
               <StyledContainer gap="12px">
                 <svg
                   width="15"
