@@ -1,4 +1,5 @@
 import fs from 'fs'
+import { NextResponse } from 'next/server'
 export async function GET(request) {
   const dataBuffer = fs.readFileSync('./src/db.json', 'utf8')
   console.log('🚀 ~ file: route.js:4 ~ GET ~ dataBuffer:', dataBuffer)
@@ -8,5 +9,5 @@ export async function GET(request) {
     results: data.length,
     data,
   }
-  return new Response(json_response)
+  return NextResponse.json(json_response)
 }

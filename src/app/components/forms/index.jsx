@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import StyledContainer from '../common/StyledContainer'
 import FormHead from '../common/FormHead'
 import FormBody from '../common/FormBody'
@@ -7,13 +7,18 @@ import ClientOnly from '../ClientOnly'
 import axios from 'axios'
 
 const Forms = () => {
+    const [forms, setForms] = useState([])
     useEffect(() => {
         axios.get("http://localhost:3000/api/forms")
-        .then(res => res.json())
-        .then(res => {console.log(res)})
+        // .then(res => res.json())
+        .then(res => {setForms(res.data.data.forms)})
         .catch(err => console.log(err))
     }, [])
     
+
+
+    console.log(forms)
+
 
   return (
     <ClientOnly>
@@ -23,7 +28,7 @@ const Forms = () => {
           subtitle="All the compulsory forms are available here"
           showFilters={true}
         />
-        <FormBody />
+        <FormBody forms={forms} />
       </StyledContainer>
     </ClientOnly>
   )

@@ -4,6 +4,7 @@
       "id": 1,
       "createdAt": "2023-06-18T10:00:00",
       "status": "under review",
+      "type": "pending",
       "custodianDetails": {
         "name": "John Doe",
         "address": "123 Main Street",
@@ -21,6 +22,7 @@
       "id": 2,
       "createdAt": "2023-06-19T14:30:00",
       "status": "pending",
+      "type": "approved",
       "custodianDetails": {
         "name": "Jane Smith",
         "address": "456 Oak Avenue",
@@ -38,6 +40,7 @@
       "id": 3,
       "createdAt": "2023-06-20T09:45:00",
       "status": "submitted",
+      "type": "pending",
       "custodianDetails": {
         "name": "Mark Johnson",
         "address": "789 Pine Street",
