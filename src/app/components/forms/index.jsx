@@ -9,7 +9,7 @@ import axios from 'axios'
 const Forms = () => {
     const [forms, setForms] = useState([])
     useEffect(() => {
-        axios.get("http://localhost:3000/api/forms")
+        axios.get("/api/forms")
         // .then(res => res.json())
         .then(res => {setForms(res.data.data.forms)})
         .catch(err => console.log(err))
