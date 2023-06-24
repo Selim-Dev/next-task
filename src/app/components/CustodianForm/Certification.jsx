@@ -1,10 +1,16 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { styled } from 'styled-components'
 import StyledInput from './../common/StyledInput'
 import StyledGrid from './../common/StyledGrid'
 import StyledContainer from './../common/StyledContainer'
 import StyledSecondaryButton from './../common/StyledSecondaryButton'
 import { useRouter } from 'next/navigation'
+import { useForm} from "react-hook-form"
+import useFormStepper from '@/app/hooks/useFormStepper'
+import useCustodianForm from '@/app/hooks/useCustodianForm'
+import { format } from 'date-fns'
+import axios from 'axios'
+import toast, { Toaster } from 'react-hot-toast';
 
 const Container = styled.div`
   width: 90vw;
@@ -59,9 +65,67 @@ const StyledLabel = styled.label`
 const StyledCheckBox = styled.input`
     
 `
+const ErrorStyled = styled.span`
+    color: red;
+    font-size: 12px;
+    font-weight: 400;
+    margin-top: 5px;
+`
+const notify = () => toast('Form Submitted Successfully', {
+  duration: 4000,
+  position: 'top-left',
+
+  // Styling
+  style: {},
+  className: '',
+
+  // Custom Icon
+  icon: '👏',
+
+  // Change colors of success/error/loading icon
+  iconTheme: {
+    primary: '#000',
+    secondary: '#fff',
+  },
+
+  // Aria
+  ariaProps: {
+    role: 'status',
+    'aria-live': 'polite',
+  },
+});
 
 const Certification = () => {
   const router = useRouter()
+  const formStepper = useFormStepper();
+  const custodianForm = useCustodianForm();
+
+  const {
+      register,
+      handleSubmit,
+      formState: { errors },
+      watch
+  } = useForm({
+    defaultValues:  {
+      certification: custodianForm?.form?.certification || null,
+  },
+    mode: "onChange"
+  })
+  const onSubmit = (data) => {
+    toast.success('Form submitted successfully');
+      const newData = {...custodianForm.form, ...data,createdAt: format(new Date(), "dd/MM/yyyy")};
+      try{
+        const response = axios.post('http://localhost:4000/forms', newData);
+        formStepper.reset();
+        custodianForm.reset();
+        notify();
+        router.push('/');
+      }catch(e){console.log(e)}
+  }
+  const handleCancel = () => {
+      formStepper.set(2);
+  }
+
   return (
     <StyledContainer
       direction="column"
@@ -70,7 +134,10 @@ const Certification = () => {
       bg="rgba(255, 255, 255, 0.5)"
       p="25px 30px">
       <CustodianTitle mb="25px">Custodian Details</CustodianTitle>
-
+      <div>
+      
+      <Toaster />
+    </div>
       <CertificationParagraph bg="#D9D9D9" p="20px">
         I hereby certify the information that I have provided in this
         subscription form is valid, correct, and complete, and an integral part
@@ -102,11 +169,12 @@ const Certification = () => {
         <br />
       </CertificationParagraph>
 
-
+    <StyledForm onSubmit={handleSubmit(onSubmit)}>
     <StyledContainer mt="20px" items="center">
-        <StyledCheckBox type="checkbox" id="confirm" />
+        <input type="checkbox" id="confirm" {...register('certification',{required:true})}/>
         <StyledLabel htmlFor="confirm" >Please tick the box to certify.</StyledLabel>
     </StyledContainer>
+    {errors.certification ? <ErrorStyled>You must agree to requirements</ErrorStyled>:''}
 
     <StyledContainer direction='column' gap="5px" items="flex-start" mt="32px">
     <CustodianTitle>Digitally Certify Document</CustodianTitle>
@@ -123,11 +191,12 @@ const Certification = () => {
 
 
       <StyledContainer gap="20px" mt="60px" ml="auto">
-        <StyledSecondaryButton color="#004A91" onClick={()=>router.push("/")}>Cancel</StyledSecondaryButton>
-        <StyledSecondaryButton bg="#004A91" color="#fff" onClick={()=>router.push("/")}>
+        <StyledSecondaryButton color="#004A91" onClick={handleCancel}>Cancel</StyledSecondaryButton>
+        <StyledSecondaryButton bg="#004A91" color="#fff" >
           Save
         </StyledSecondaryButton>
       </StyledContainer>
+      </StyledForm >
     </StyledContainer>
   )
 }

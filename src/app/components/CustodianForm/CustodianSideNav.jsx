@@ -9,7 +9,9 @@ import PersonIconWhite from '../icons/person-icon-white'
 import InformationIconBlue from '../icons/information-icon-blue'
 import CertificateIconBlue from '../icons/certificate-icon-blue'
 import CertificateIconWhite from '../icons/certificate-icon-white'
-
+import useFormStepper from '@/app/hooks/useFormStepper'
+import useCustodianForm from '@/app/hooks/useCustodianForm'
+import _ from 'lodash'
 
 const StyledList = styled.ul`
   list-style: none;
@@ -25,31 +27,38 @@ const StyledListItem = styled.li`
 `
 
 function CustodianSideNav({activeSec,setActiveSec}) {
+  const formStepper = useFormStepper()
+  const form = useCustodianForm();
   const handleNavClick = (active) => {
-    setActiveSec(active)
+    if(active === 2 || active === 3 ){
+      if(_.isEmpty(form.custodianDetails)){
+        active= 1;
+      }
+    }
+    formStepper.set(active);
   }
   return (
           <StyledList>
             <StyledListItem
-            color={activeSec=="custodian-details"?"#fff":"004A91"} bg={activeSec=="custodian-details"?"#004A91":"fff"}
-            onClick={()=>handleNavClick("custodian-details")}>
+            color={formStepper.step ===1?"#fff":"004A91"} bg={formStepper.step ===1?"#004A91":"fff"}
+            onClick={()=>handleNavClick(1)}>
               <StyledContainer gap="12px">
-                {activeSec=="custodian-details"?<PersonIconWhite /> : <PersonIconBlue />}
+                {formStepper.step ===1?<PersonIconWhite /> : <PersonIconBlue />}
                 <span>Custodian Details</span>
               </StyledContainer>
             </StyledListItem>
-            <StyledListItem color={activeSec=="other-information"?"#fff":"004A91"} bg={activeSec=="other-information"?"#004A91":"fff"}  onClick={()=>handleNavClick("other-information")}>
+            <StyledListItem color={formStepper.step ===2?"#fff":"004A91"} bg={formStepper.step ===2?"#004A91":"fff"}  onClick={()=>handleNavClick(2)}>
               <StyledContainer gap="12px">
-              {activeSec=="other-information"?<InformationIconWhite /> : <InformationIconBlue />}
+              {formStepper.step ===2?<InformationIconWhite /> : <InformationIconBlue />}
 
                 <span>Other Information</span>
               </StyledContainer>
             </StyledListItem>
             <StyledListItem
-            color={activeSec=="certification"?"#fff":"004A91"} bg={activeSec=="certification"?"#004A91":"fff"}
-            onClick={()=>handleNavClick("certification")}>
+            color={formStepper.step ===3?"#fff":"004A91"} bg={formStepper.step ===3?"#004A91":"fff"}
+            onClick={()=>handleNavClick(3)}>
               <StyledContainer gap="12px">
-              {activeSec=="certification"?<CertificateIconWhite /> : <CertificateIconBlue />}
+              {formStepper.step ===3?<CertificateIconWhite /> : <CertificateIconBlue />}
 
                 <span>Certification</span>
               </StyledContainer>

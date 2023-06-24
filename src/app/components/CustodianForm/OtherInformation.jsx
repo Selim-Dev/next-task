@@ -5,6 +5,9 @@ import StyledGrid from './../common/StyledGrid'
 import StyledContainer from './../common/StyledContainer'
 import StyledSecondaryButton from './../common/StyledSecondaryButton'
 import { useRouter } from 'next/navigation'
+import { useForm} from "react-hook-form"
+import useFormStepper from '@/app/hooks/useFormStepper'
+import useCustodianForm from '@/app/hooks/useCustodianForm'
 
 const Container = styled.div`
   width: 90vw;
@@ -24,7 +27,6 @@ const Container = styled.div`
 `
 
 const StyledForm = styled.form`
-    width: 100%;
 `
 
 const CustodianMainTitle = styled.h3`
@@ -65,10 +67,37 @@ const StyledLabel = styled.label`
 const StyledRadio= styled.input`
     
 `
-
+const ErrorStyled = styled.span`
+    color: red;
+    font-size: 12px;
+    font-weight: 400;
+    margin-top: 5px;
+`
 
 const OtherInformation = () => {
-  const router = useRouter()
+  const formStepper = useFormStepper();
+  const custodianForm = useCustodianForm();
+  const {
+      register,
+      handleSubmit,
+      formState: { errors },
+      watch
+  } = useForm({
+    defaultValues:  {
+      certificates: custodianForm?.form?.otherInformation?.certificates || 'client',
+      profits: custodianForm?.form?.otherInformation?.profits || 'client',
+      salesOutcome: custodianForm?.form?.otherInformation?.salesOutcome || 'client',
+  },
+    mode: "onChange"
+  })
+  const onSubmit = (data) => {
+      custodianForm.update({otherInformation:data});
+      formStepper.next();
+  }
+  const handleCancel = () => {
+      formStepper.set(1);
+  }
+
   return (
     <StyledContainer direction='column' width="100%" items="flex-start" bg="rgba(255, 255, 255, 0.5)" p="25px 30px" >
         <CustodianMainTitle mb="10px">Other Information</CustodianMainTitle>
@@ -77,64 +106,72 @@ const OtherInformation = () => {
         Where do you want to send the following:        
       </SubTitle>
 
+      <StyledForm onSubmit={handleSubmit(onSubmit)}>
 
+   
       <StyledGrid cols="3" gap="30px" mt="22px">
         <StyledContainer direction="column" items="flex-start">
-          <SubTitle size="14px">Certificates</SubTitle>
+           <SubTitle size="14px">Certificates</SubTitle>
           <StyledGrid cols="3">
             <StyledContainer gap="5px">
-              <StyledRadio type="radio" id="certificate-client" name="certificate" />
+              <input type="radio" value="client" {...register("certificates")} id="certificate-client" />
               <StyledLabel htmlFor="certificate-client">Client</StyledLabel>
             </StyledContainer>
             <StyledContainer gap="5px">
-              <StyledRadio type="radio" id="certificate-custodian" name="certificate" />
+              <input type="radio" value="custodian" {...register("certificates")}  id="certificate-custodian"/>
+
               <StyledLabel htmlFor="certificate-custodian">Custodian</StyledLabel>
             </StyledContainer>
             <StyledContainer gap="5px">
-              <StyledRadio type="radio" id="certificate-other" name="certificate" />
+              <input type="radio" value="other entity" {...register("certificates")}  id="certificate-other"/>
+
               <StyledLabel htmlFor="certificate-other">Other Entity</StyledLabel>
             </StyledContainer>
-
           </StyledGrid>
+          {errors.certificates ? <ErrorStyled>certificates field is required</ErrorStyled>:''}
         </StyledContainer>
         <StyledContainer direction="column" items="flex-start">
           <SubTitle size="14px">Profits or any other Income</SubTitle>
           <StyledGrid cols="3">
             <StyledContainer gap="5px">
-              <StyledRadio type="radio" id="income-client" name="income" />
-              <StyledLabel htmlFor="income-client">Client</StyledLabel>
+              <input type="radio" value="client" {...register("profits")} id="certificate-client" />
+              <StyledLabel htmlFor="certificate-client">Client</StyledLabel>
             </StyledContainer>
             <StyledContainer gap="5px">
-              <StyledRadio type="radio" id="income-custodian" name="income" />
-              <StyledLabel htmlFor="income-custodian">Custodian</StyledLabel>
-            </StyledContainer>
-            <StyledContainer gap="5px">
-              <StyledRadio type="radio" id="income-other" name="income" />
-              <StyledLabel htmlFor="income-other">Other Entity</StyledLabel>
-            </StyledContainer>
+              <input type="radio" value="custodian" {...register("profits")}  id="certificate-custodian"/>
 
+              <StyledLabel htmlFor="certificate-custodian">Custodian</StyledLabel>
+            </StyledContainer>
+            <StyledContainer gap="5px">
+              <input type="radio" value="other entity" {...register("profits")}  id="certificate-other"/>
+
+              <StyledLabel htmlFor="certificate-other">Other Entity</StyledLabel>
+            </StyledContainer>
           </StyledGrid>
+          {errors.profits ? <ErrorStyled>Profits or any other Income field is required</ErrorStyled>:''}
         </StyledContainer>
         <StyledContainer direction="column" items="flex-start">
           <SubTitle size="14px">Sales Outcomes</SubTitle>
           <StyledGrid cols="3">
             <StyledContainer gap="5px">
-              <StyledRadio type="radio" id="outcome-client" name="outcome" />
-              <StyledLabel htmlFor="outcome-client">Client</StyledLabel>
+              <input type="radio" value="client" {...register("salesOutcome")} id="certificate-client" />
+              <StyledLabel htmlFor="certificate-client">Client</StyledLabel>
             </StyledContainer>
             <StyledContainer gap="5px">
-              <StyledRadio type="radio" id="outcome-custodian" name="outcome" />
-              <StyledLabel htmlFor="outcome-custodian">Custodian</StyledLabel>
-            </StyledContainer>
-            <StyledContainer gap="5px">
-              <StyledRadio type="radio" id="outcome-other" name="outcome" />
-              <StyledLabel htmlFor="outcome-other">Other Entity</StyledLabel>
-            </StyledContainer>
+              <input type="radio" value="custodian" {...register("salesOutcome")}  id="certificate-custodian"/>
 
+              <StyledLabel htmlFor="certificate-custodian">Custodian</StyledLabel>
+            </StyledContainer>
+            <StyledContainer gap="5px">
+              <input type="radio" value="other entity" {...register("salesOutcome")}  id="certificate-other"/>
+
+              <StyledLabel htmlFor="certificate-other">Other Entity</StyledLabel>
+            </StyledContainer>
           </StyledGrid>
-
-
+          {errors.salesOutcome ? <ErrorStyled>Sales Outcomes field is required</ErrorStyled>:''}
         </StyledContainer>
+      
+      
       </StyledGrid>
 
 
@@ -142,10 +179,10 @@ const OtherInformation = () => {
 
 
         <StyledContainer gap="20px" mt="60px" ml="auto">
-            <StyledSecondaryButton color="#004A91" onClick={()=>router.push("/")}>Cancel</StyledSecondaryButton>
-            <StyledSecondaryButton bg="#004A91" color="#fff" onClick={()=>router.push("/")}>Save</StyledSecondaryButton>
+            <StyledSecondaryButton type="button" color="#004A91" onClick={handleCancel}>Cancel</StyledSecondaryButton>
+            <StyledSecondaryButton bg="#004A91" color="#fff" >Save</StyledSecondaryButton>
         </StyledContainer>
-
+      </StyledForm>
         
     </StyledContainer>
   )

@@ -7,9 +7,12 @@ import ClientOnly from '../components/ClientOnly'
 import Certification from '../components/CustodianForm/Certification'
 import OtherInformation from '../components/CustodianForm/OtherInformation'
 import CustodianDetails from '../components/CustodianForm/CustodianDetails'
+import useFormStepper from '../hooks/useFormStepper'
 
 const CustodianForm = () => {
   const [activeSec, setActiveSec] = React.useState('custodian-details')
+  const formStepper = useFormStepper();
+
   return (
     <ClientOnly>
       <StyledContainer direction="column" width="95vw" m="auto">
@@ -23,9 +26,9 @@ const CustodianForm = () => {
           gap="20px"
           width="100%">
           <CustodianSideNav activeSec={activeSec} setActiveSec={setActiveSec} />
-          {activeSec == 'custodian-details' && <CustodianDetails />}
-          {activeSec == 'other-information' && <OtherInformation />}
-          {activeSec == 'certification' && <Certification />}
+          {formStepper.step == 1 && <CustodianDetails />}
+          {formStepper.step == 2 && <OtherInformation />}
+          {formStepper.step == 3 && <Certification />}
         </StyledContainer>
       </StyledContainer>
     </ClientOnly>

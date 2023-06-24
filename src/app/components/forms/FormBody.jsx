@@ -95,7 +95,7 @@ function FormBody({ forms }) {
   }
 
   useEffect(() => {
-    const newData = forms.filter(({ type }) => type == status)
+    const newData = forms?.filter(({ type }) => type == status)
     setFilteredData(newData)
   }, [forms, status])
 
@@ -126,26 +126,30 @@ function FormBody({ forms }) {
               </StyledTabledRow>
             </StyledTabledHead>
             <StyledTabledBody>
-              {filteredData?.map(
-                ({ id, name, title, createdAt, custodianDetails }) => (
+              {filteredData?.sort(function(a,b) {
+                    a = a.createdAt.split('/').reverse().join('');
+                    b = b.createdAt.split('/').reverse().join('');
+                    return a > b ? -1 : a < b ? 1 : 0;
+                  })?.map(
+                ({ id, name, createdAt, custodianDetails }) => (
                   <StyledTabledRow key={id} style={{
                     borderBottom:"1px solid #F4F4F5"
                   }}>
                     <StyledTableCell>{id}</StyledTableCell>
-                    <StyledTableCell>{title}</StyledTableCell>
+                    <StyledTableCell>{custodianDetails.name}</StyledTableCell>
                     <StyledTableCell>{createdAt}</StyledTableCell>
                     <StyledTableCell float="right">
                       <ActionBtnsContainer>
-                        <ActionBtn bg="#004A91">
-                          <EditIcon onClick={()=>router.push("/CustodianForm")} />
+                        <ActionBtn bg="#004A91"  onClick={()=>router.push("/CustodianForm")}>
+                          <EditIcon />
                         </ActionBtn>
 
-                        <ActionBtn bg="#fff">
+                        <ActionBtn bg="#fff" onClick={()=>router.push("/CustodianForm")}>
                           <ViewIcon />
                         </ActionBtn>
 
-                        <ActionBtn bg="#DCAC00">
-                          <DownloadIcon />
+                        <ActionBtn bg="#DCAC00"  onClick={()=>router.push("/CustodianForm")}>
+                          <DownloadIcon/>
                         </ActionBtn>
                       </ActionBtnsContainer>
                     </StyledTableCell>
@@ -168,12 +172,16 @@ function FormBody({ forms }) {
               </StyledTabledRow>
             </StyledTabledHead>
             <StyledTabledBody>
-              {filteredData.map(({ id, title, createdAt, status }) => (
+              {filteredData?.sort(function(a,b) {
+                    a = a.createdAt.split('/').reverse().join('');
+                    b = b.createdAt.split('/').reverse().join('');
+                    return a > b ? -1 : a < b ? 1 : 0;
+                  })?.map(({ id, custodianDetails, createdAt, status }) => (
                 <StyledTabledRow key={id} style={{
                   borderBottom:"1px solid #F4F4F5"
                 }}>
                   <StyledTableCell>{id}</StyledTableCell>
-                  <StyledTableCell>{title}</StyledTableCell>
+                  <StyledTableCell>{custodianDetails.name}</StyledTableCell>
                   <StyledTableCell>{createdAt}</StyledTableCell>
                   <StyledTableCell>
                     <StyledStatusCell color={() => statusColor(status)}>
@@ -182,11 +190,11 @@ function FormBody({ forms }) {
                   </StyledTableCell>
                   <StyledTableCell float="right">
                     <ActionBtnsContainer>
-                      <ActionBtn bg="#004A91">
-                        <EditIcon onClick={()=>router.push("/CustodianForm")} />
+                      <ActionBtn bg="#004A91" onClick={()=>router.push("/CustodianForm")}>
+                        <EditIcon  />
                       </ActionBtn>
 
-                      <ActionBtn bg="#fff">
+                      <ActionBtn bg="#fff" onClick={()=>router.push("/CustodianForm")}>
                         <ViewIcon />
                       </ActionBtn>
                     </ActionBtnsContainer>

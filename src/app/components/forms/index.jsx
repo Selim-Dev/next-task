@@ -5,17 +5,20 @@ import FormHead from '../common/FormHead'
 import FormBody from './FormBody'
 import ClientOnly from '../ClientOnly'
 import axios from 'axios'
-
+import { format } from 'date-fns';
+console.log('helllllllloo',format(new Date(), 'dd/MM/yyyy'))
 const Forms = () => {
     const [forms, setForms] = useState([])
     useEffect(() => {
-        axios.get("/api/forms")
+        axios.get("http://localhost:4000/forms")
         // .then(res => res.json())
-        .then(res => {setForms(res.data.data.forms)})
+        .then(res => {setForms(res.data)})
         .catch(err => console.log(err))
     }, [])
     
-
+    useEffect(() => {
+      console.log(forms)
+    }, [forms])
 
     console.log(forms)
 

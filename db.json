@@ -1,0 +1,112 @@
+{
+  "forms": [
+    {
+      "id": 1,
+      "createdAt": "18/06/2023",
+      "status": "under review",
+      "type": "pending",
+      "custodianDetails": {
+        "name": "John Doe",
+        "address": "123 Main Street",
+        "accountName": "John Doe's Account",
+        "accountNumber": 123456789
+      },
+      "otherInformation": {
+        "certificates": "client",
+        "profits": "custodian",
+        "salesOutcome": "other entity"
+      },
+      "certification": "yes"
+    },
+    {
+      "id": 2,
+      "createdAt": "19/06/2023",
+      "status": "pending",
+      "type": "approved",
+      "custodianDetails": {
+        "name": "Jane Smith",
+        "address": "456 Oak Avenue",
+        "accountName": "Jane Smith's Account",
+        "accountNumber": 987654321
+      },
+      "otherInformation": {
+        "certificates": "custodian",
+        "profits": "client",
+        "salesOutcome": "custodian"
+      },
+      "certification": "yes"
+    },
+    {
+      "id": 3,
+      "createdAt": "20/06/2023",
+      "status": "submitted",
+      "type": "pending",
+      "custodianDetails": {
+        "name": "Mark Johnson",
+        "address": "789 Pine Street",
+        "accountName": "Mark Johnson's Account",
+        "accountNumber": 246813579
+      },
+      "otherInformation": {
+        "certificates": "other entity",
+        "profits": "other entity",
+        "salesOutcome": "client"
+      },
+      "certification": "yes"
+    },
+    {
+      "status": "under review",
+      "type": "pending",
+      "custodianDetails": {
+        "name": "Tanek Hudson",
+        "address": "Quas sapiente laboru",
+        "accountName": "Chaim Gregory",
+        "accountNumber": "782"
+      },
+      "otherInformation": {
+        "certificates": "client",
+        "profits": "client",
+        "salesOutcome": "client"
+      },
+      "certification": true,
+      "createdAt": "24/06/2023",
+      "id": 4
+    },
+    {
+      "status": "under review",
+      "type": "pending",
+      "custodianDetails": {
+        "name": "Odysseus Calhoun",
+        "address": "Dolorum inventore ei",
+        "accountName": "Eliana Benson",
+        "accountNumber": "715"
+      },
+      "otherInformation": {
+        "certificates": "client",
+        "profits": "client",
+        "salesOutcome": "client"
+      },
+      "certification": true,
+      "createdAt": "24/06/2023",
+      "id": 5
+    },
+    {
+      "status": "under review",
+      "type": "pending",
+      "custodianDetails": {
+        "name": "Hall Garcia",
+        "address": "Deserunt quis volupt",
+        "accountName": "Judah Savage",
+        "accountNumber": "467"
+      },
+      "otherInformation": {
+        "certificates": "client",
+        "profits": "custodian",
+        "salesOutcome": "client"
+      },
+      "certification": true,
+      "createdAt": "24/06/2023",
+      "id": 6
+    }
+  ]
+}
